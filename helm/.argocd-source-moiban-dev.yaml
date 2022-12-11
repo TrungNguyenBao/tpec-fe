@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: poly.apps.moiban.image.repository
+    value: registry.ftech.ai/funzy/moiban
+    forcestring: true
+  - name: poly.apps.moiban.image.tag
+    value: dev-2022-07-12_02-19-58-c91dfa40
+    forcestring: true

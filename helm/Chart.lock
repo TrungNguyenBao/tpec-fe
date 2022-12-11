@@ -1,0 +1,6 @@
+dependencies:
+- name: poly
+  repository: oci://registry.ftech.ai/is-chart
+  version: 0.3.0
+digest: sha256:b8bbddc93d5abb21dc19b8e5d2aa943a3bcbb9976598af5a79f2f4eb37cc545d
+generated: "2022-07-12T16:52:09.260006147+07:00"

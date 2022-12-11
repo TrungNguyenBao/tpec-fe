@@ -1,0 +1,44 @@
+@tailwind base;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+body {
+  color: #fff;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.45;
+  font-weight: 400;
+  font-style: normal;
+  color: #333;
+}
+@font-face {
+  font-family: "UTM-Swiss-721-Black-Condensed";
+  src: url("/fontface/UTM-Swiss-721-Black-Condensed.ttf");
+}
+
+.wh-img {
+  @apply w-full h-full  object-cover;
+}
+
+.header-fix {
+  @apply fixed left-0 top-0 right-0 z-50;
+}
+.active {
+  @apply text-colorcs-E0C bg-colorcs-fff;
+}
+.afNav {
+  @apply after:absolute after:right-0 after:top-[50%] after:mt-[-10px] after:bottom-0 after:bg-colorcs-fff after:w-[1px] after:h-[20px];
+}
+.afProd {
+  @apply after:absolute after:left-[50%] after:ml-[-80px] after:w-[150px] after:h-[4px] after:bottom-0 after:bg-gradient-to-r after:to-colorcs-b28 after:from-colorcs-E0C;
+}
+.afDevi {
+  @apply after:absolute after:left-0 after:w-[150px] after:h-[4px] after:bottom-0 after:bg-gradient-to-r after:to-colorcs-b28 after:from-colorcs-E0C;
+}
+.affooter {
+  @apply after:absolute after:left-0 after:w-[50px] after:h-[1px] after:bottom-0 after:bg-colorcs-E0C;
+}
+.afInformation {
+  @apply after:absolute after:w-[5px] after:h-[5px] after:rounded-full after:bg-colorcs-fff after:left-[1px] after:top-[40%];
+}
+
+@tailwind components;
+@tailwind utilities;

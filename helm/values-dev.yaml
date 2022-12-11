@@ -1,0 +1,146 @@
+poly:
+  apps: # each app is a chart
+    moiban:
+      name: moiban # this equals to nameOverride:
+      enabled: true
+      fullnameOverride: ""
+      deployType: Deployment # Deployment | StatefulSet - case sensitivity, required
+
+      #========== Chart manifest override ==========#
+      chartName: "moiban" # chart name override
+      chartVersion: "" # chartVersion override
+      appVersion: "" # appVersion override
+
+      #========== Deployment manifest #==========#
+      extraLabels: {}
+        # owner: platform
+        # app: main
+      replicaCount: 1
+      strategy: RollingUpdate # or Recreate, default RollingUpdate
+      progressDeadlineSeconds: 600 # default 600
+
+      # spec.template.metadata
+      metadata:
+        name: ""
+        podAnnotations: {}
+        extraLabels:
+          sidecar-injector: enabled
+
+      # spec.template.spec
+      imagePullSecrets:
+        - name: regcred
+      hostAliases: []
+        # - ip: "192.168.8.103"
+        #   hostnames:
+        #     - "mysql"
+        #     - "redis"
+        #     - "rabbitmq"
+      podSecurityContext: {}
+
+      # spec.template.spec.containers
+      securityContext: {}
+      image:
+        repository: registry.ftech.ai/funzy/moiban
+        pullPolicy: IfNotPresent
+        # Overrides the image tag whose default is the chart appVersion.
+        tag: "latest"
+      command: ["/bin/sh", "-c"]
+      runtimeArgs: ["yarn start"]
+      env: {}
+        # TZ: "Asia/Ho_Chi_Minh"
+      # TODO: envFrom need to be optimized, should not use postfix like this, can have fullname case
+      envFrom: [] # list of postfix
+        # - main # Release.Name-postfix
+        # - common
+      ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+      livenessProbe: {}
+        # httpGet:
+        #   path: /
+        #   port: http
+      readinessProbe: {}
+        # httpGet:
+        #   path: /
+        #   port: http
+      resources:
+        limits:
+          cpu: 500m
+          memory: 500Mi
+        requests:
+          cpu: 300m
+          memory: 500Mi
+
+      # volumeMounts:
+      #   - name: moiban-dev-volume
+      #     mountPath: /usr/src/app/public/uploads
+
+      # # spec.template.spec.volumes
+      # volumes:
+      #   - name: moiban-dev-volume
+      #     persistentVolumeClaim:
+      #       claimName: moiban-dev-volume
+      
+      #========== ServiceAccount manifest #==========#
+      serviceAccount:
+        create: true
+        annotations: {}
+        name: ""
+        automountServiceAccountToken: false
+      
+      #========== Service manifest #==========#
+      service:
+        enabled: true
+        type: ClusterIP
+        port: 3000
+        targetPort: 3000
+        name: http
+      
+      #========== Ingress manifest #==========#
+      ingress:
+        enabled: true
+        className: ""
+        annotations: 
+          kubernetes.io/ingress.class: nginx
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: 1000m
+        hosts:
+          - host: moiban.dev.ftech.ai
+            paths:
+              - path: /
+                pathType: Prefix
+          # - host: loanchienmobile-dev.funzy.vn
+          #   paths:
+          #     - path: /
+          #       pathType: Prefix
+          # - host: lc-dev.funzy.vn
+          #   paths:
+          #     - path: /
+          #       pathType: Prefix
+          # - host: lcm-dev.funzy.vn
+          #   paths:
+          #     - path: /
+          #       pathType: Prefix
+        tls: []
+          # - secretName: chart-example-tls
+          #   hosts:
+          #     - chart-example.local
+      
+      #========== PVC manifest #==========#
+      pvc:
+        enabled: false
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        name: ""
+
+      #========== HPA manifest #==========#
+      autoscaling:
+        enabled: false
+        minReplicas: 1
+        maxReplicas: 5
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+
+      #========== ConfigMap manifest #==========#
+      configMaps: []

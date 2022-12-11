@@ -1,0 +1,101 @@
+module.exports = {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    fontSize: {
+      xs: "0.75rem",
+      sm: "0.875rem",
+      base: "1rem",
+      lg: "1.125rem",
+      xl: "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "4rem",
+    },
+    screens: {
+      sx: "375px",
+      // => @media (min-width: 360px) { ... }
+
+      sm: "576px",
+      // => @media (min-width: 576px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      lg: "992px",
+      // => @media (min-width: 992px) { ... }
+
+      xl: "1200px",
+      // => @media (min-width: 1140px) { ... }
+    },
+    extend: {
+      backgroundImage: {
+        bgpro: "url('/images/proj9.jpg')",
+        bgfooter: "url('/images/bg-footer.png')",
+      },
+      boxShadow: {
+        "2xl": "0 0 7px 5px rgb(0 0 0 / 5%);",
+        "3xl": "0 2px 3px 0 rgb(0 0 0 / 20%)",
+        "4xl": "0 4px 4px 1px rgb(0 0 0 / 20%)",
+        "5xl": "0 2px 18px -10px rgb(0 0 0 / 75%)",
+      },
+      colors: {
+        colorcs: {
+          E0C: "#1080EC",
+          E11: "#0E1133",
+          B0E: "#07B0E5",
+          fff: "#ffffff",
+          F9C: "#F9C454",
+          E9A: "#E9A236",
+          FA9: "#F7F9FA",
+          B16: "#B16A04",
+          F9F: "#f7f9fa",
+          FCD: "#fcd46f",
+          F9C: "#F9C454",
+          E31: "#202e31",
+          D68: "#d68000",
+          C7A: "#4a5c7a",
+          E0E: "#e0e0e0",
+          A94: "#a9410f",
+          ED1: "#ed1b2f",
+          B2B: "#2b2b2b",
+          E8A: "#e8a745",
+          EAE: "#eaeaea",
+          DED: "#dedede",
+          D6D: "#d6d6d6",
+          DD6: "#1666dd",
+          EA9: "#ea9a23",
+          E5E: "#e5e5e5",
+          b20: "#100a90",
+          f7f: "#f7f7f7",
+          EBE: "#ebebeb",
+          ff3: "#ff3535",
+          b51: "#b51d1d",
+          AE3: "#ae3c13",
+          f2f: "#f2f2f2",
+          E9A: "#e9a236",
+          E59: "#e59927",
+          f8b: "#f8bc42",
+          BEB: "#bebebe",
+          cf1: "#469cf1",
+          b28: "#82b9ee",
+          f99: "#999",
+          f66: "#666",
+          ddd: "#ddd",
+          f00: "#000",
+          f33: "#333",
+          f77: "#777",
+          f11: "#111",
+          f20: "rgb(0 0 0 / 20%)",
+          bd1: "rgba(0,0,0,.1)",
+          bd3: "rgba(0,0,0,.3)",
+          bd6: "rgba(229,153,39,.6)",
+          bg2: "rgba(255,255,255,.2)",
+          bg8: "rgba(247,249,250,.8)",
+        },
+      },
+    },
+  },
+  plugins: [require("tailwind-scrollbar"), require("@tailwindcss/line-clamp")],
+};
