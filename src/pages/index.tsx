@@ -1,18 +1,22 @@
 import Advise from "@/components/Advise";
 import IntroDuce from "@/components/IntroDuce";
-import Product from "@/components/Product";
+import Product from "@/components/ProDuct";
 import Service from "@/components/Service";
 import Partner from "@/components/Partner";
 import WorkingMotto from "@/components/WorkingMotto";
 import { serviceAPI } from "@/services/serviceAPI";
 import { GetServerSideProps } from "next";
 import { IAboutUs, IHComponent, IImageProps } from "../models";
+import Banner from "@/components/Banner";
 
 export type HomePageProps = {
   homeData: {
     attributes: {
       aboutUs: IAboutUs;
-      banner: IImageProps[];
+      banner: Array<{
+        id: number;
+        image: IImageProps;
+      }>;
       products: IHComponent;
       services: IHComponent[];
       article: IHComponent;
@@ -23,6 +27,7 @@ export type HomePageProps = {
 const Home = ({ homeData }: HomePageProps) => {
   return (
     <>
+      <Banner data={homeData?.attributes?.banner} />
       <Product data={homeData?.attributes?.products} />
       <Service data={homeData?.attributes?.services} />
       <IntroDuce data={homeData?.attributes?.article} />

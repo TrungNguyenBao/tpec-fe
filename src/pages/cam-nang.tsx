@@ -50,19 +50,17 @@ const HandBookPage = ({ data }: HandBookPageProps) => {
     <div className="bg-colorcs-fff">
       <section className="container relative mx-auto mb-4 px-3 text-justify">
         <div className="flex items-center border-b-[1px] border-colorcs-D6D py-4">
-          <a
-            href="#"
-            className="text-[16px] text-colorcs-f00 hover:text-colorcs-E0C"
-          >
-            Trang chủ
-          </a>
+          <Link href="/">
+            <a className="text-[16px] text-colorcs-f00 hover:text-colorcs-E0C">
+              Trang chủ
+            </a>
+          </Link>
           <MdOutlineDoubleArrow className="mx-2 text-xs text-colorcs-f99" />
-          <a
-            href="#"
-            className="text-[16px] text-colorcs-f00 hover:text-colorcs-E0C"
-          >
-            Tin tức
-          </a>
+          <Link href="/cam-nang">
+            <a className="text-[16px] text-colorcs-f00 hover:text-colorcs-E0C">
+              Cẩm nang
+            </a>
+          </Link>
         </div>
         <header className="mt-6">
           <h2 className="relative  py-3 text-[26px] font-medium leading-8 text-colorcs-E0C">
@@ -135,7 +133,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await serviceAPI?.getArticleByCate({
       page: 1,
-      pageSize: 1,
+      pageSize: 12,
       cate: "hand-book",
     });
     return {

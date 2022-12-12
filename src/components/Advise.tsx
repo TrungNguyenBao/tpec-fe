@@ -72,7 +72,7 @@ const Advise = () => {
                 Số điện thoại không hợp lệ
               </span>
               <button
-                className="rounded-full cursor-pointer bg-colorcs-E0C px-6 text-xs font-bold leading-9 text-colorcs-fff duration-200 hover:bg-colorcs-E9A mt-1"
+                className="rounded-full cursor-pointer bg-colorcs-E0C px-6 text-xs font-bold leading-9 text-colorcs-fff duration-200 hover:bg-colorcs-E9A mt-1 z-[1]"
                 disabled={err || !phone}
                 onClick={hanldeRegister}
               >

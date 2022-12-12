@@ -15,7 +15,7 @@ const Parter = () => {
 
   return (
     <div className="bg-colorcs-fff">
-      <section className="container relative mx-auto flex flex-wrap justify-center md:py-[30px] sx:py-5">
+      <section className="container relative mx-auto md:py-[30px] sx:py-5 px-4">
         <Swiper
           modules={[Controller, Pagination]}
           observer
@@ -46,7 +46,7 @@ const Parter = () => {
                 <img
                   src={getMediaFormat(item?.attributes?.image)}
                   alt="Fujitech elevator"
-                  className="inline-block w-full h-full object-cover"
+                  className="inline-block w-full h-full max-h-16 object-contain"
                 />
               </figure>
             </SwiperSlide>

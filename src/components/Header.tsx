@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import { MenuFix } from "../constants";
 import { getMediaFormat } from "../utils";
+import NextImage from "./BaseComponents/NextImage";
 
 const Header = () => {
   const router = useRouter();
@@ -18,16 +19,20 @@ const Header = () => {
   const navBar = globalData?.data?.attributes?.menuDynamic;
 
   return (
-    <header className="lg:sticky lg:-top-[92px] bg-colorcs-fff transition-all duration-200 z-50">
+    <header className="lg:sticky lg:-top-[99px] bg-colorcs-fff transition-all duration-200 z-[10]">
       <div className="container mx-auto py-[10px] px-3 ">
         <div className="sx:justify-center lg:justify-between sx:px-0 lg:flex lg:mx-0">
           <Link href="/">
             <a title={globalData?.data?.attributes?.nameOfCompany}>
               {globalData?.data?.attributes?.logo?.data && (
-                <img
+                <NextImage
                   className="m-auto"
                   src={getMediaFormat(globalData?.data?.attributes?.logo)}
                   alt={globalData?.data?.attributes?.nameOfCompany}
+                  width={70}
+                  height={70}
+                  layout="intrinsic"
+                  objectFit="contain"
                 />
               )}
             </a>
@@ -80,17 +85,15 @@ const Header = () => {
               </ul>
             </div>
           </div>
-          <div className="relative lg:m-0 sx:m-auto xl:w-[420px] lg:w-[340px] md:w-[420px] sx:w-full">
-            <div>
-              <input
-                className="mt-[15px] w-full rounded-full border-[1px] border-[rgba(0,0,0,.09)] bg-[rgba(0,0,0,.03)] py-[6px] pl-3 text-base leading-[26px] outline-none focus:border-[rgba(0,0,0,.09)]"
-                title="Nhập điều kiện tìm kiếm."
-                type="text"
-                name="search"
-                placeholder="Nhập từ khóa..."
-              />
-            </div>
-            <div className="absolute top-6 right-4 flex items-center text-base">
+          <div className="relative flex items-center lg:m-0 sx:m-auto xl:w-[420px] lg:w-[340px] md:w-[420px] sx:w-full">
+            <input
+              className="w-full rounded-full border-[1px] border-[rgba(0,0,0,.09)] bg-[rgba(0,0,0,.03)] py-[6px] pl-3 text-base leading-[26px] outline-none focus:border-[rgba(0,0,0,.09)] pr-28"
+              title="Nhập điều kiện tìm kiếm."
+              type="text"
+              name="search"
+              placeholder="Nhập từ khóa..."
+            />
+            <div className="absolute top-1/2 -translate-y-1/2 right-4 flex items-center text-base">
               <button>Tìm Kiếm</button>
               <MdOutlineKeyboardArrowRight />
             </div>
