@@ -108,13 +108,13 @@ export const editContentHandle = (content = "") => {
   content = content
     ? content.replace(
         /src="\/uploads\//g,
-        `src="${process.env.NEXT_PUBLIC_BASE_API_URL}/uploads/`
+        `src="${process.env.NEXT_PUBLIC_SERVICE_URL}/uploads/`
       )
     : "";
   content = content
     ? content.replace(
         /srcset="\/uploads\//g,
-        `src="${process.env.NEXT_PUBLIC_BASE_API_URL}/uploads/`
+        `src="${process.env.NEXT_PUBLIC_SERVICE_URL}/uploads/`
       )
     : "";
   return content;

@@ -1,10 +1,8 @@
+import { useGlobalContext } from "Context/GlobalProvider";
+import Link from "next/link";
 import { FaHome } from "react-icons/fa";
 import { ImPhone } from "react-icons/im";
 import { IoIosMail } from "react-icons/io";
-import { useGlobalContext } from "Context/GlobalProvider";
-import Link from "next/link";
-import { BsYoutube } from "react-icons/bs";
-import { ImFacebook2 } from "react-icons/im";
 import { IArticle } from "../models";
 
 const FooTer = () => {
@@ -91,13 +89,13 @@ const FooTer = () => {
         <div className="container relative mx-auto flex flex-wrap p-[15px] md:justify-evenly lg:justify-end">
           <div className="text-colorcs-fff sx:pr-0 md:pr-5">
             <p className="text-sm leading-6">
-              © Copyright TPEC Việt Nam 2018. All Rights Reserved
+              © Copyright THANG MÁY 3D 2022. All Rights Reserved
             </p>
             <p className="text-sm leading-6">
               Đơn vị chủ quản: {globalData?.data?.attributes?.nameOfCompany}
             </p>
           </div>
-          <div className="flex">
+          {/* <div className="flex">
             <Link href="/">
               <a className="pr-5">
                 <img
@@ -126,7 +124,7 @@ const FooTer = () => {
                 <BsYoutube />
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
