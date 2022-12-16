@@ -134,7 +134,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const res = await serviceAPI?.getArticleByCate({
       page: 1,
       pageSize: 12,
-      cate: "hand-book",
+      cate: "cam-nang",
     });
     return {
       props: {

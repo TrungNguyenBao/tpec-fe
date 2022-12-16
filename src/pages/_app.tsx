@@ -67,7 +67,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           },
         ]}
       />
-      <GlobalProvider globalData={pageProps.globalData}>
+      <GlobalProvider
+        globalData={pageProps.globalData}
+        categories={pageProps?.categories}
+      >
         <ErrorBoundary>
           <ToastContainer
             position="bottom-right"
@@ -92,11 +95,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
 MyApp.getInitialProps = async (context: any) => {
   const appProps = await App.getInitialProps(context);
-  const res = await serviceAPI.getGlobalData();
+  const [res, res2] = await Promise.all([
+    serviceAPI.getGlobalData(),
+    serviceAPI?.getCategories(),
+  ]);
   return {
     ...appProps,
     pageProps: {
       globalData: res,
+      categories: res2?.data,
     },
   };
 };

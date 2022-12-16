@@ -62,7 +62,7 @@ const TechnicalAssistance = ({ data }: TechnicalAssistanceProps) => {
             </a>
           </Link>
         </div>
-        <header className="mt-8">
+        <header className="mt-6">
           <h2 className="relative  py-3 text-[26px] font-medium leading-8 text-colorcs-E0C">
             Tư vấn kĩ thuật
           </h2>
@@ -134,7 +134,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const res = await serviceAPI?.getArticleByCate({
       page: 1,
       pageSize: 12,
-      cate: "technical-assistance",
+      cate: "tu-van-ki-thuat",
     });
     return {
       props: {

@@ -14,10 +14,8 @@ import NextImage from "./BaseComponents/NextImage";
 
 const Header = () => {
   const router = useRouter();
-  const { globalData, setShowNavMobile } = useGlobalContext();
-
+  const { globalData, setShowNavMobile, categories } = useGlobalContext();
   const navBar = globalData?.data?.attributes?.menuDynamic;
-
   return (
     <header className="lg:sticky lg:-top-[99px] bg-colorcs-fff transition-all duration-200 z-[10]">
       <div className="container mx-auto py-[10px] px-3 ">
@@ -155,6 +153,40 @@ const Header = () => {
                         <li
                           className=" inline-block w-full px-1 hover:bg-colorcs-fff duration-200"
                           key={"item-mc-li-" + itemMC?.id}
+                        >
+                          <Link
+                            href={`/${itemMC?.attributes?.slug}-${itemMC?.id}`}
+                          >
+                            <a className="inline-block px-[25px] leading-9 text-xs border-b-[1px] border-colorcs-bd1 font-normal uppercase duration-200 hover:text-colorcs-E0C">
+                              {itemMC?.attributes?.title}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+
+              {categories?.map((item: any) => (
+                <li
+                  className="group relative inline-block duration-200 px-1"
+                  key={"nav-h-c-" + item?.id}
+                >
+                  <div
+                    className={`relative flex hover:text-colorcs-E0C rounded-md hover:bg-colorcs-fff leading-9 duration-200 items-center xl:px-4 lg:px-3 text-base font-bold uppercase`}
+                  >
+                    {item?.attributes?.name}
+                    {item?.attributes?.articles?.data?.length > 0 && (
+                      <MdKeyboardArrowDown className="ml-1" />
+                    )}
+                  </div>
+                  {item?.attributes?.articles?.data?.length > 0 && (
+                    <ul className="bg-colorcs-E0C text-colorcs-fff shadow-4xl absolute left-0 hidden top-[36px] pt-[10px] w-[230px] duration-200 group-hover:block">
+                      {item?.attributes?.articles?.data?.map((itemMC: any) => (
+                        <li
+                          className=" inline-block w-full px-1 hover:bg-colorcs-fff duration-200"
+                          key={"item-mc-li-c-" + itemMC?.id}
                         >
                           <Link
                             href={`/${itemMC?.attributes?.slug}-${itemMC?.id}`}

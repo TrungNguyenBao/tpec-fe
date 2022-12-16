@@ -46,7 +46,7 @@ const Banner = ({
               <img
                 src={getMediaFormat(item?.image)}
                 alt="image-bn"
-                className="object-contain"
+                className="object-cover w-full h-full"
               />
             </figure>
           </SwiperSlide>

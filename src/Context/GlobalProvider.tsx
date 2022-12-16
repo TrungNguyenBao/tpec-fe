@@ -3,6 +3,7 @@ import { IFooterMenu, IImageProps, INavMenu, ISeoProps } from "../models";
 
 interface GlobalProviderProps {
   children: ReactNode;
+  categories: any;
   globalData: {
     data: {
       id?: number;
@@ -51,21 +52,27 @@ interface IGlobalProviderContext {
   };
   showNavMobile: boolean;
   setShowNavMobile: any;
+  categories: any;
 }
 
 export const GlobalContext = createContext({} as IGlobalProviderContext);
 
 export const useGlobalContext = () => useContext(GlobalContext);
 
-const GlobalProvider = ({ children, globalData }: GlobalProviderProps) => {
+const GlobalProvider = ({
+  children,
+  globalData,
+  categories,
+}: GlobalProviderProps) => {
   const [showNavMobile, setShowNavMobile] = useState(false);
   const value = useMemo(
     () => ({
       globalData,
       showNavMobile,
       setShowNavMobile,
+      categories,
     }),
-    [globalData, showNavMobile]
+    [globalData, showNavMobile, categories]
   );
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

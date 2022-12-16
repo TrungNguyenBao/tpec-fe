@@ -32,6 +32,21 @@ export const serviceAPI = {
     });
     return serviceClient.get(`/api/global-setting?${query}`);
   },
+  getCategories(): Promise<any> {
+    const query = qs.stringify({
+      filters: {
+        navbarMenu: {
+          $eq: true,
+        },
+      },
+      populate: {
+        articles: {
+          fields: ["title, slug"],
+        },
+      },
+    });
+    return serviceClient.get(`/api/categories?${query}`);
+  },
   getHomeData(): Promise<any> {
     const query = qs.stringify({
       populate: {
@@ -105,7 +120,7 @@ export const serviceAPI = {
     param: IArticleParams = {
       page: 1,
       pageSize: 12,
-      cate: "hand-book",
+      cate: "cam-nang",
     }
   ): Promise<any> {
     const query = qs.stringify({
@@ -118,7 +133,11 @@ export const serviceAPI = {
         thumbImage: "*",
       },
       filters: {
-        category: param?.cate,
+        categories : {
+          slug: {
+            $in: [param?.cate + ""],
+          },
+        },
       },
     });
     return serviceClient.get(`/api/articles?${query}`);
