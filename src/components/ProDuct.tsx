@@ -55,14 +55,15 @@ const Product = ({ data }: { data: IHComponent }) => {
                   <p className="text-[14px] leading-5 text-colorcs-E31 line-clamp-3">
                     {item?.attributes?.description}
                   </p>
-                  <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
-                    <div className="mt-2">
+
+                  <div className="mt-2">
+                    <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
                       <a className="flex cursor-pointer items-center justify-end text-xs font-bold leading-5 text-colorcs-f00 duration-300 group-hover:text-colorcs-E0C">
                         XEM CHI TIẾT
                         <FaLongArrowAltRight className="ml-2 text-base" />
                       </a>
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                 </header>
               </article>
             ))}

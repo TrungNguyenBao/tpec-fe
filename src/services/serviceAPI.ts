@@ -9,7 +9,11 @@ export const serviceAPI = {
         logo: "*",
         favicon: "*",
         footerMenu: {
-          populate: "*",
+          populate: {
+            menus: {
+              fields: ["title", "slug"],
+            },
+          },
         },
         defaultSeo: {
           populate: "*",
@@ -114,7 +118,14 @@ export const serviceAPI = {
     });
   },
   getArticleById(id: number): Promise<any> {
-    return serviceClient.get(`/api/articles/${id}`);
+    const query = qs.stringify({
+      populate: {
+        listArticle: {
+          populate: "*",
+        },
+      },
+    });
+    return serviceClient.get(`/api/articles/${id}?${query}`);
   },
   getArticleByCate(
     param: IArticleParams = {
@@ -133,7 +144,7 @@ export const serviceAPI = {
         thumbImage: "*",
       },
       filters: {
-        categories : {
+        categories: {
           slug: {
             $in: [param?.cate + ""],
           },

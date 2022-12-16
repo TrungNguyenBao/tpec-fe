@@ -16,6 +16,7 @@ const Header = () => {
   const router = useRouter();
   const { globalData, setShowNavMobile, categories } = useGlobalContext();
   const navBar = globalData?.data?.attributes?.menuDynamic;
+
   return (
     <header className="lg:sticky lg:-top-[99px] bg-colorcs-fff transition-all duration-200 z-[10]">
       <div className="container mx-auto py-[10px] px-3 ">
@@ -43,13 +44,9 @@ const Header = () => {
                   <span className="text-[10px] uppercase">Email</span>
                 </li>
                 <li className="leading-4">
-                  <a
-                    href="#"
-                    title="gmail"
-                    className="text-sm font-bold uppercase text-colorcs-C7A duration-200 group-hover:opacity-80"
-                  >
+                  <span className="text-sm font-bold uppercase text-colorcs-C7A duration-200 group-hover:opacity-80">
                     {globalData?.data?.attributes?.email}
-                  </a>
+                  </span>
                   {/* <span
                     title="gmail"
                     className="text-sm font-bold uppercase text-colorcs-D68"
@@ -66,19 +63,9 @@ const Header = () => {
                   <span className="text-[10px] uppercase">Holine</span>
                 </li>
                 <li className="leading-4">
-                  <a
-                    href="#"
-                    title="hotline"
-                    className="text-sm font-bold uppercase text-colorcs-C7A duration-200 group-hover:opacity-80"
-                  >
+                  <span className="text-sm font-bold uppercase text-colorcs-C7A duration-200 group-hover:opacity-80">
                     {globalData?.data?.attributes?.hotline}
-                  </a>
-                  {/* <span
-                    title="gmail"
-                    className="text-sm font-bold uppercase text-colorcs-D68"
-                  >
-                    {globalData?.data?.attributes?.hotline}
-                  </span> */}
+                  </span>
                 </li>
               </ul>
             </div>
@@ -124,7 +111,7 @@ const Header = () => {
                 >
                   {item?.article?.data ? (
                     <Link
-                      href={`/${item?.article?.data?.attributes?.slug}-${item?.id}`}
+                      href={`/${item?.article?.data?.attributes?.slug}-${item?.article?.data?.id}`}
                     >
                       <a
                         className={`${

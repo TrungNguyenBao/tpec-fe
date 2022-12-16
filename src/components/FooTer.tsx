@@ -5,6 +5,7 @@ import { useGlobalContext } from "Context/GlobalProvider";
 import Link from "next/link";
 import { BsYoutube } from "react-icons/bs";
 import { ImFacebook2 } from "react-icons/im";
+import { IArticle } from "../models";
 
 const FooTer = () => {
   const { globalData } = useGlobalContext();
@@ -55,7 +56,7 @@ const FooTer = () => {
           </div>
           {footerMenu && (
             <div className="lg:w-3/5 sx:w-full lg:pt-0 sx:pt-4 grid md:grid-cols-3 gap-4 lg:pl-16 sx:pl-5">
-              {footerMenu?.map((item) => (
+              {footerMenu?.map((item: any) => (
                 <article key={"ft-menu-" + item?.id}>
                   <header className="mb-3">
                     <h3 className="affooter relative pb-2 text-[16px] font-bold uppercase leading-[22px] text-colorcs-fff">
@@ -63,29 +64,22 @@ const FooTer = () => {
                     </h3>
                   </header>
                   <ul className="text-colorcs-fff">
-                    {item?.menus?.map((itemM, index) => (
-                      <li
-                        className="group mb-2 inline-block w-full leading-5"
-                        key={"ft-link-" + index + item?.id}
-                      >
-                        {itemM?.isExternalLink ? (
-                          <a
-                            href={itemM?.link}
-                            target={"_blank"}
-                            rel="noreferrer"
-                            className="afInformation relative inline-block pl-[14px] text-[14px]  duration-300 group-hover:pl-[18px]"
+                    {item?.menus?.data?.map(
+                      (itemM: IArticle, index: number) => (
+                        <li
+                          className="group mb-2 inline-block w-full leading-5"
+                          key={"ft-link-" + index + item?.id}
+                        >
+                          <Link
+                            href={`/${itemM?.attributes?.slug}-${itemM?.id}`}
                           >
-                            {itemM?.name}
-                          </a>
-                        ) : (
-                          <Link href={itemM?.link}>
                             <a className="afInformation relative inline-block pl-[14px] text-[14px] duration-300 group-hover:pl-[18px] ">
-                              {itemM?.name}
+                              {itemM?.attributes?.title}
                             </a>
                           </Link>
-                        )}
-                      </li>
-                    ))}
+                        </li>
+                      )
+                    )}
                   </ul>
                 </article>
               ))}

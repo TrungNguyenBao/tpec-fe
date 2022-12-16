@@ -100,6 +100,9 @@ export interface IArticle {
     thumbImage?: IImageProps;
     description?: string;
     publishedAt?: string;
+    listArticle: {
+      data: IArticle[];
+    };
   };
 }
 

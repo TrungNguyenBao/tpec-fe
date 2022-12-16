@@ -40,7 +40,6 @@ const Service = ({ data }: { data: IHComponent[] }) => {
             centeredSlides
             observer
             observeParents
-            slideToClickedSlide={true}
             loop
             spaceBetween={15}
             className="mt-5"
@@ -60,12 +59,12 @@ const Service = ({ data }: { data: IHComponent[] }) => {
               <SwiperSlide key={"sv-ar" + art?.id}>
                 <article className=" border-[1px] border-colorcs-E0E group relativ h-full w-full shadow-5xl bg-colorcs-fff duration-200">
                   <figure className="relative pt-[76%]">
-                    <Link href={`/${art?.attributes?.slug}-${item?.id}`}>
+                    <Link href={`/${art?.attributes?.slug}-${art?.id}`}>
                       {art?.attributes?.thumbImage?.data && (
                         <a className=" overflow-hidden inline-block absolute inset-0">
                           <NextImage
                             src={getMediaFormat(art?.attributes?.thumbImage)}
-                            alt={`${art?.attributes?.slug}-${item?.id}`}
+                            alt={`${art?.attributes?.slug}`}
                             layout="fill"
                           />
                         </a>
@@ -74,7 +73,7 @@ const Service = ({ data }: { data: IHComponent[] }) => {
                   </figure>
                   <header className="border-t-4 border-t-colorcs-E0C md:p-5 sx:p-3 text-center">
                     <h3 className=" text-lg font-bold lg:line-clamp-1 sx:line-clamp-2 sx:min-h-[48px] lg:min-h-[26px] leading-6 text-colorcs-f33 duration-200 group-hover:text-colorcs-E0C ">
-                      <Link href={`/${art?.attributes?.slug}-${item?.id}`}>
+                      <Link href={`/${art?.attributes?.slug}-${art?.id}`}>
                         <a>{art?.attributes?.title}</a>
                       </Link>
                     </h3>
