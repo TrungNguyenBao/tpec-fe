@@ -1,6 +1,7 @@
 import { useGlobalContext } from "Context/GlobalProvider";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { GoMailRead } from "react-icons/go";
 import { IoIosMenu } from "react-icons/io";
 import {
@@ -16,6 +17,17 @@ const Header = () => {
   const router = useRouter();
   const { globalData, setShowNavMobile, categories } = useGlobalContext();
   const navBar = globalData?.data?.attributes?.menuDynamic;
+  const [kw, setKw] = useState("");
+
+  const handleSearch = () => {
+    if (kw) {
+      router.push(`/tim-kiem?keyword=${kw}`);
+      setKw("");
+      return;
+    }
+    router.push(`/tim-kiem`);
+    setKw("");
+  };
 
   return (
     <header className="lg:sticky lg:-top-[99px] bg-colorcs-fff transition-all duration-200 z-[10]">
@@ -77,22 +89,29 @@ const Header = () => {
               type="text"
               name="search"
               placeholder="Nhập từ khóa..."
+              value={kw}
+              onChange={(e) => setKw(e?.target?.value)}
             />
-            <div className="absolute top-1/2 -translate-y-1/2 right-4 flex items-center text-base">
+            <div
+              className="absolute top-1/2 -translate-y-1/2 right-4 flex items-center text-base"
+              onClick={handleSearch}
+            >
               <button>Tìm Kiếm</button>
               <MdOutlineKeyboardArrowRight />
             </div>
           </div>
         </div>
       </div>
-      <div className="relative bg-colorcs-E0C h-[56px] flex">
-        <div className="container relative mx-auto px-3 flex items-center">
-          <nav className=" flex  items-center mx-auto sx:px-0 md:w-[420px] lg:w-full sx:w-full relative">
-            <IoIosMenu
-              className="lg:hidden sx:block w-[48px] h-[48px]  rounded-full hover:bg-blue-500 active:bg-blue-400 p-2 duration-300 text-colorcs-fff text-3xl cursor-pointer"
-              onClick={() => setShowNavMobile((pre: any) => !pre)}
-            />
-            <ul className="flex lg:block sx:hidden text-base font-semibold text-colorcs-fff">
+      <div className="relative bg-colorcs-E0C  flex">
+        <div className="container mx-auto md:hidden">
+          <IoIosMenu
+            className="lg:hidden sx:block w-[48px] h-[48px]  rounded-full hover:bg-blue-500 active:bg-blue-400 p-2 duration-300 text-colorcs-fff text-3xl cursor-pointer"
+            onClick={() => setShowNavMobile((pre: any) => !pre)}
+          />
+        </div>
+        <div className="relative mx-auto p-3 items-center md:flex hidden">
+          <nav className="flex items-center mx-auto w-full relative">
+            <ul className="text-base font-semibold text-colorcs-fff">
               <li className="inline-block px-1">
                 <Link href="/">
                   <a
@@ -111,7 +130,7 @@ const Header = () => {
                 >
                   {item?.article?.data ? (
                     <Link
-                      href={`/${item?.article?.data?.attributes?.slug}-${item?.article?.data?.id}`}
+                      href={`/${item?.article?.data?.attributes?.slug}-${item?.article?.data?.id}.html`}
                     >
                       <a
                         className={`${
@@ -142,7 +161,7 @@ const Header = () => {
                           key={"item-mc-li-" + itemMC?.id}
                         >
                           <Link
-                            href={`/${itemMC?.attributes?.slug}-${itemMC?.id}`}
+                            href={`/${itemMC?.attributes?.slug}-${itemMC?.id}.html`}
                           >
                             <a className="inline-block px-[25px] leading-9 text-xs border-b-[1px] border-colorcs-bd1 font-normal uppercase duration-200 hover:text-colorcs-E0C">
                               {itemMC?.attributes?.title}
@@ -163,29 +182,39 @@ const Header = () => {
                   <div
                     className={`relative flex hover:text-colorcs-E0C rounded-md hover:bg-colorcs-fff leading-9 duration-200 items-center xl:px-4 lg:px-3 text-base font-bold uppercase`}
                   >
-                    {item?.attributes?.name}
-                    {item?.attributes?.articles?.data?.length > 0 && (
-                      <MdKeyboardArrowDown className="ml-1" />
+                    {item?.attributes?.navbarMenu ? (
+                      item?.attributes?.name
+                    ) : (
+                      <Link href={`/${item?.attributes?.slug}`}>
+                        <a>{item?.attributes?.name}</a>
+                      </Link>
                     )}
+                    {item?.attributes?.navbarMenu &&
+                      item?.attributes?.articles?.data?.length > 0 && (
+                        <MdKeyboardArrowDown className="ml-1" />
+                      )}
                   </div>
-                  {item?.attributes?.articles?.data?.length > 0 && (
-                    <ul className="bg-colorcs-E0C text-colorcs-fff shadow-4xl absolute left-0 hidden top-[36px] pt-[10px] w-[230px] duration-200 group-hover:block">
-                      {item?.attributes?.articles?.data?.map((itemMC: any) => (
-                        <li
-                          className=" inline-block w-full px-1 hover:bg-colorcs-fff duration-200"
-                          key={"item-mc-li-c-" + itemMC?.id}
-                        >
-                          <Link
-                            href={`/${itemMC?.attributes?.slug}-${itemMC?.id}`}
-                          >
-                            <a className="inline-block px-[25px] leading-9 text-xs border-b-[1px] border-colorcs-bd1 font-normal uppercase duration-200 hover:text-colorcs-E0C">
-                              {itemMC?.attributes?.title}
-                            </a>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  {item?.attributes?.navbarMenu &&
+                    item?.attributes?.articles?.data?.length > 0 && (
+                      <ul className="bg-colorcs-E0C text-colorcs-fff shadow-4xl absolute left-0 hidden top-[36px] pt-[10px] w-[230px] duration-200 group-hover:block">
+                        {item?.attributes?.articles?.data?.map(
+                          (itemMC: any) => (
+                            <li
+                              className=" inline-block w-full px-1 hover:bg-colorcs-fff duration-200"
+                              key={"item-mc-li-c-" + itemMC?.id}
+                            >
+                              <Link
+                                href={`/${itemMC?.attributes?.slug}-${itemMC?.id}.html`}
+                              >
+                                <a className="inline-block px-[25px] leading-9 text-xs border-b-[1px] border-colorcs-bd1 font-normal uppercase duration-200 hover:text-colorcs-E0C">
+                                  {itemMC?.attributes?.title}
+                                </a>
+                              </Link>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    )}
                 </li>
               ))}
               {MenuFix?.map((item) => (

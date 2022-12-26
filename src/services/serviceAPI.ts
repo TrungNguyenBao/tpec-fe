@@ -38,16 +38,17 @@ export const serviceAPI = {
   },
   getCategories(): Promise<any> {
     const query = qs.stringify({
-      filters: {
-        navbarMenu: {
-          $eq: true,
-        },
-      },
+      // filters: {
+      //   navbarMenu: {
+      //     $eq: true,
+      //   },
+      // },
       populate: {
         articles: {
           fields: ["title, slug"],
         },
       },
+      sort: ["sort:asc"],
     });
     return serviceClient.get(`/api/categories?${query}`);
   },
@@ -116,6 +117,30 @@ export const serviceAPI = {
     return serviceClient.post(`/api/contacts`, {
       data,
     });
+  },
+  getArticleSearch(
+    param: IArticleParams = {
+      page: 1,
+      pageSize: 12,
+      keyword: "",
+    }
+  ): Promise<any> {
+    const query = qs.stringify({
+      pagination: {
+        page: param?.page,
+        pageSize: param?.pageSize,
+      },
+      fields: ["title", "slug", "publishedAt", "description"],
+      populate: {
+        thumbImage: "*",
+      },
+      filters: {
+        title: {
+          $containsi: param?.keyword,
+        },
+      },
+    });
+    return serviceClient.get(`/api/articles?${query}`);
   },
   getArticleById(id: number): Promise<any> {
     const query = qs.stringify({

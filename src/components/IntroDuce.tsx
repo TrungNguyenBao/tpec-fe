@@ -27,7 +27,7 @@ const IntroDuce = ({ data }: { data: IHComponent }) => {
                   <div className="group relative h-full w-full duration-200">
                     <figure className="relative pt-[66%]">
                       <Link
-                        href={`/${listA?.[0]?.attributes?.slug}-${listA?.[0]?.id}`}
+                        href={`/${listA?.[0]?.attributes?.slug}-${listA?.[0]?.id}.html`}
                       >
                         <a>
                           {listA?.[0]?.attributes?.thumbImage?.data && (
@@ -45,7 +45,7 @@ const IntroDuce = ({ data }: { data: IHComponent }) => {
                     </figure>
                     <header className="py-3">
                       <Link
-                        href={`/${listA?.[0]?.attributes?.slug}-${listA?.[0]?.id}`}
+                        href={`/${listA?.[0]?.attributes?.slug}-${listA?.[0]?.id}.html`}
                       >
                         <a>
                           <h3 className="pb-1 text-xl font-bold leading-[28px] text-colorcs-f33 duration-200 group-hover:text-colorcs-E0C">
@@ -67,7 +67,9 @@ const IntroDuce = ({ data }: { data: IHComponent }) => {
                     key={"art-lv2" + item?.id}
                   >
                     <figure className="pr-[30%] pt-[19%] relative">
-                      <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
+                      <Link
+                        href={`/${item?.attributes?.slug}-${item?.id}.html`}
+                      >
                         <a>
                           <NextImage
                             src="/images/kich-thuoc-thang-may-gia-dinh.jpg"
@@ -79,7 +81,9 @@ const IntroDuce = ({ data }: { data: IHComponent }) => {
                     </figure>
                     <div className="pl-4 w-full">
                       <header>
-                        <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
+                        <Link
+                          href={`/${item?.attributes?.slug}-${item?.id}.html`}
+                        >
                           <a>
                             <h3 className="text-lg leading-6 duration-200 group-hover:text-colorcs-E0C font-semibold pb-1 line-clamp-2">
                               {item?.attributes?.title}

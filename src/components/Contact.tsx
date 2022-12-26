@@ -6,7 +6,12 @@ const Contact = () => {
     <div className="fixed z-20 bottom-0 left-0 lg:w-[400px] sx:w-full border-t-[1px] border-colorcs-EAE bg-[rgba(255,255,255,.9)]">
       <ul className="flex p-3 sx:justify-between md:justify-around">
         <li className=" cursor-pointer">
-          <a className="flex items-center">
+          <a
+            href={`tel:${globalData?.data?.attributes?.hotline
+              ?.split(" ")
+              .join("")}`}
+            className="flex items-center"
+          >
             <img
               src="/images/icon-phone2.png"
               alt="phone"

@@ -110,4 +110,5 @@ export interface IArticleParams {
   page: number;
   pageSize: number;
   cate?: string;
+  keyword?: string;
 }

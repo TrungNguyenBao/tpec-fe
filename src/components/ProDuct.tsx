@@ -29,15 +29,15 @@ const Product = ({ data }: { data: IHComponent }) => {
                 className="group hover:shadow-2xl duration-300 relative rounded-t-xl h-full w-full border-[1px] border-colorcs-bd1 bg-colorcs-fff"
               >
                 <figure className="relative pt-[76%]">
-                  <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
+                  <Link href={`/${item?.attributes?.slug}-${item?.id}.html`}>
                     <a
-                      title={`/${item?.attributes?.slug}-${item?.id}`}
+                      title={`/${item?.attributes?.slug}-${item?.id}.html`}
                       className=" overflow-hidden rounded-t-[10px] inline-block absolute inset-0"
                     >
                       {item?.attributes?.thumbImage?.data && (
                         <NextImage
                           src={getMediaFormat(item?.attributes?.thumbImage)}
-                          alt={`/${item?.attributes?.slug}-${item?.id}`}
+                          alt={`/${item?.attributes?.slug}-${item?.id}.html`}
                           layout="fill"
                         />
                       )}
@@ -45,7 +45,7 @@ const Product = ({ data }: { data: IHComponent }) => {
                   </Link>
                 </figure>
                 <header className="md:py-5 md:px-7 sx:p-3 text-center">
-                  <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
+                  <Link href={`/${item?.attributes?.slug}-${item?.id}.html`}>
                     <a>
                       <h3 className="py-2 group-hover:text-colorcs-E0C duration-200 text-base font-bold uppercase leading-6 text-colorcs-f33 ">
                         {item?.attributes?.title}
@@ -57,7 +57,7 @@ const Product = ({ data }: { data: IHComponent }) => {
                   </p>
 
                   <div className="mt-2">
-                    <Link href={`/${item?.attributes?.slug}-${item?.id}`}>
+                    <Link href={`/${item?.attributes?.slug}-${item?.id}.html`}>
                       <a className="flex cursor-pointer items-center justify-end text-xs font-bold leading-5 text-colorcs-f00 duration-300 group-hover:text-colorcs-E0C">
                         XEM CHI TIẾT
                         <FaLongArrowAltRight className="ml-2 text-base" />

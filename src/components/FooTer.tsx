@@ -69,7 +69,7 @@ const FooTer = () => {
                           key={"ft-link-" + index + item?.id}
                         >
                           <Link
-                            href={`/${itemM?.attributes?.slug}-${itemM?.id}`}
+                            href={`/${itemM?.attributes?.slug}-${itemM?.id}.html`}
                           >
                             <a className="afInformation relative inline-block pl-[14px] text-[14px] duration-300 group-hover:pl-[18px] ">
                               {itemM?.attributes?.title}

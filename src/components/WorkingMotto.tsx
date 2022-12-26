@@ -25,7 +25,7 @@ const WorkingMotto = ({ data }: { data: IAboutUs }) => {
                   layout="intrinsic"
                   width={30}
                   height={25}
-                  objectFit="cover"
+                  objectFit="contain"
                 />
               </div>
               <div className="group relative flex h-full w-full duration-200 hover:drop-shadow-3xl">
