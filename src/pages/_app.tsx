@@ -1,3 +1,5 @@
+/* eslint-disable one-var */
+/* eslint-disable no-var */
 import ErrorBoundary from "@/components/ErrorBoundary";
 import AppLayout from "@/layouts/AppLayout";
 import GlobalProvider from "Context/GlobalProvider";
@@ -16,12 +18,22 @@ import { serviceAPI } from "@/services/serviceAPI";
 import { DefaultSeo } from "next-seo";
 import { ISeoProps } from "../models";
 import { getMediaFormat } from "../utils";
+import { useEffect } from "react";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const defaultSeo: ISeoProps =
     pageProps?.globalData?.data?.attributes?.defaultSeo;
   const favicon = pageProps?.globalData?.data?.attributes?.favicon;
   const structuredData = JSON.stringify(defaultSeo?.structuredData);
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      const el = document.createElement("script");
+      el.src = "/js/fbjs.js";
+      document.body.appendChild(el);
+    }, 10);
+    return () => clearTimeout(delay);
+  }, []);
 
   return (
     <>
