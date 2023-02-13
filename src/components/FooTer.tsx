@@ -27,16 +27,26 @@ const FooTer = () => {
             <div className="relative flex pb-3 leading-5">
               <FaHome className="absolute top-[4px] text-colorcs-fff text-sm" />
 
-              <p className=" pl-6 text-[14px] leading-[21px]">
-                Địa chỉ: {globalData?.data?.attributes?.address}
-              </p>
+              <div className=" pl-6 text-[14px] leading-[21px]">
+                Địa chỉ:{" "}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: globalData?.data?.attributes?.address + "",
+                  }}
+                />
+              </div>
             </div>
             <div className="relative flex pb-3 leading-5">
               <FaHome className="absolute top-[4px] text-colorcs-fff text-sm" />
 
-              <p className=" pl-6 text-[14px] leading-[21px]">
-                VPGD: {globalData?.data?.attributes?.office}
-              </p>
+              <div className=" pl-6 text-[14px] leading-[21px]">
+                VPGD:
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: globalData?.data?.attributes?.office + "",
+                  }}
+                />
+              </div>
             </div>
             <div className="relative flex pb-3 leading-5">
               <ImPhone className="absolute top-[4px] text-colorcs-fff text-sm" />
