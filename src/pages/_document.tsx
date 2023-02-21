@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga */
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
 // Need to create a custom _document because i18n support is not compatible with `next export`.
@@ -20,8 +21,17 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id="fb-root" />
-          <div id="fb-customer-chat" className="fb-customerchat" />
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-NT9K2LC"
+              height="0"
+              width="0"
+              style={{
+                display: "none",
+                visibility: "hidden",
+              }}
+            ></iframe>
+          </noscript>
         </body>
       </Html>
     );
